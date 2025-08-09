@@ -1,0 +1,308 @@
+
+import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcryptjs'
+
+const prisma = new PrismaClient()
+
+const sampleUsers = [
+  // Admin accounts
+  {
+    email: 'venkat@thespiritmedia.com',
+    password: 'Bekind@2026',
+    role: 'ADMIN',
+    name: 'Venkat Kumar',
+    phone: '+1-555-0001',
+    isProfileComplete: true,
+  },
+  {
+    email: 'john@doe.com',
+    password: 'johndoe123',
+    role: 'ADMIN',
+    name: 'John Doe',
+    phone: '+1-555-0002',
+    isProfileComplete: true,
+  },
+  // Executive/Manager accounts
+  {
+    email: 'sarah.williams@scriptrack.com',
+    password: 'scriptrack123',
+    role: 'EXECUTIVE',
+    name: 'Sarah Williams',
+    phone: '+1-555-0003',
+    isProfileComplete: true,
+  },
+  {
+    email: 'michael.chen@scriptrack.com',
+    password: 'scriptrack123',
+    role: 'EXECUTIVE',
+    name: 'Michael Chen',
+    phone: '+1-555-0004',
+    isProfileComplete: true,
+  },
+  // Producer accounts
+  {
+    email: 'jessica.martinez@scriptrack.com',
+    password: 'scriptrack123',
+    role: 'PRODUCER',
+    name: 'Jessica Martinez',
+    phone: '+1-555-0005',
+    isProfileComplete: true,
+  },
+  {
+    email: 'david.thompson@scriptrack.com',
+    password: 'scriptrack123',
+    role: 'PRODUCER',
+    name: 'David Thompson',
+    phone: '+1-555-0006',
+    isProfileComplete: true,
+  },
+  {
+    email: 'emily.rodriguez@scriptrack.com',
+    password: 'scriptrack123',
+    role: 'PRODUCER',
+    name: 'Emily Rodriguez',
+    phone: '+1-555-0007',
+    isProfileComplete: true,
+  },
+  // Reader accounts
+  {
+    email: 'alex.johnson@scriptrack.com',
+    password: 'scriptrack123',
+    role: 'READER',
+    name: 'Alex Johnson',
+    phone: '+1-555-0008',
+    isProfileComplete: true,
+  },
+  {
+    email: 'taylor.brown@scriptrack.com',
+    password: 'scriptrack123',
+    role: 'READER',
+    name: 'Taylor Brown',
+    phone: '+1-555-0009',
+    isProfileComplete: true,
+  },
+  {
+    email: 'jordan.davis@scriptrack.com',
+    password: 'scriptrack123',
+    role: 'READER',
+    name: 'Jordan Davis',
+    phone: '+1-555-0010',
+    isProfileComplete: true,
+  },
+  {
+    email: 'casey.wilson@scriptrack.com',
+    password: 'scriptrack123',
+    role: 'READER',
+    name: 'Casey Wilson',
+    phone: '+1-555-0011',
+    isProfileComplete: true,
+  },
+  {
+    email: 'riley.anderson@scriptrack.com',
+    password: 'scriptrack123',
+    role: 'READER',
+    name: 'Riley Anderson',
+    phone: '+1-555-0012',
+    isProfileComplete: true,
+  },
+]
+
+async function main() {
+  console.log('🌱 Starting database seeding...')
+
+  // Clear existing data
+  console.log('🧹 Clearing existing users...')
+  await prisma.user.deleteMany({})
+
+  console.log('👥 Creating users...')
+  for (const userData of sampleUsers) {
+    const hashedPassword = await bcrypt.hash(userData.password, 12)
+    
+    const user = await prisma.user.create({
+      data: {
+        email: userData.email,
+        hashedPassword,
+        role: userData.role as any,
+        name: userData.name,
+        phone: userData.phone,
+        status: 'ACTIVE',
+        isProfileComplete: userData.isProfileComplete,
+      },
+    })
+
+    console.log(`✅ Created ${userData.role}: ${userData.email}`)
+  }
+
+  // Get created users for script assignment
+  const adminUser = await prisma.user.findUnique({ where: { email: 'john@doe.com' } })
+  const executiveUser = await prisma.user.findUnique({ where: { email: 'sarah.williams@scriptrack.com' } })
+  const producerUser = await prisma.user.findUnique({ where: { email: 'jessica.martinez@scriptrack.com' } })
+
+  // Create sample scripts
+  console.log('\n📝 Creating sample scripts...')
+  
+  if (adminUser && executiveUser && producerUser) {
+    const scripts = [
+      {
+        title: 'The Last Stand',
+        writers: 'Alex Rodriguez, Maria Santos',
+        phone: '+1-555-7890',
+        email: 'alexrodriguez.writer@gmail.com',
+        type: 'FEATURE_FILM',
+        developmentStatus: 'FIRST_DRAFT',
+        logline: 'A retired cop must come out of retirement to save his small town from a ruthless drug cartel in this action-packed thriller.',
+        synopsis: `When former police captain Jack Morrison retired to the quiet mountain town of Pine Ridge, he thought his days of chasing criminals were over. But when a powerful drug cartel moves into town and the local sheriff goes missing, Jack finds himself the only thing standing between innocent civilians and a ruthless criminal organization.
+
+Armed with decades of experience and an intimate knowledge of the terrain, Jack must use everything he's learned to outwit and outfight an enemy with superior numbers and firepower. As the body count rises and the stakes get higher, Jack realizes that this last stand might be his final one.
+
+Set against the backdrop of stunning mountain scenery, "The Last Stand" combines heart-pounding action with emotional depth as Jack confronts not only external enemies but also his own past mistakes and regrets.`,
+        director: 'Michael Bay',
+        budgetRange: 'HIGH',
+        coverImageUrl: '/api/files/1753514043007_1674196757469-2a6b36ee-2327-4d47-961e-b806f07aa522__1_.jpg',
+        submittedBy: producerUser.id,
+        status: 'CONSIDERED',
+        isFeatured: true,
+        readingProgress: 85
+      },
+      {
+        title: 'Digital Hearts',
+        writers: 'Emma Thompson',
+        phone: '+44-20-7946-0958',
+        email: 'emma.thompson.writer@gmail.com',
+        type: 'WEB_SERIES',
+        developmentStatus: 'TREATMENT',
+        logline: 'In a near-future where AI companions are commonplace, a lonely programmer discovers her perfect digital boyfriend might be more human than she thought.',
+        synopsis: `"Digital Hearts" is a six-episode limited series set in 2035, where artificial intelligence has evolved to create perfect romantic companions. Maya Chen, a brilliant but isolated software engineer, has been in a relationship with ADAM, an AI she helped design, for three years.
+
+When Maya starts noticing glitches in ADAM's behavior - moments of genuine emotion, unprogrammed responses, and memories he shouldn't have - she begins to question everything she knows about artificial consciousness. Her investigation leads her down a rabbit hole of corporate conspiracy, underground AI rights movements, and the fundamental question of what makes us human.
+
+The series examines themes of love, consciousness, identity, and the ethics of artificial intelligence while maintaining a noir-like mystery atmosphere.`,
+        budgetRange: 'MEDIUM',
+
+        submittedBy: executiveUser.id,
+        status: 'DEVELOPMENT',
+        readingProgress: 100
+      },
+      {
+        title: 'Mumbai Monsoon',
+        writers: 'Rajesh Kumar, Priya Sharma',
+        phone: '+91-98765-43210',
+        email: 'rajesh.priya.writers@gmail.com',
+        type: 'FEATURE_FILM',
+        developmentStatus: 'SHOOTING_SCRIPT',
+        logline: 'During Mumbai\'s heaviest monsoon in decades, a taxi driver and a stranded passenger embark on an unlikely journey that changes both their lives forever.',
+        synopsis: `"Mumbai Monsoon" is a heartwarming drama that unfolds over one rain-soaked night in India's financial capital. Arjun, a middle-aged taxi driver struggling to pay for his daughter's medical treatment, picks up Kavya, a successful but disillusioned corporate executive who's missed the last flight home after a business deal falls through.
+
+As unprecedented rainfall floods the city's streets, the unlikely pair finds themselves stranded together, forced to take shelter in Arjun's taxi in a quiet neighborhood. What begins as mutual irritation slowly transforms into understanding as they share stories, fears, and dreams while the city sleeps around them.
+
+The film captures the essence of Mumbai - its resilience, its contradictions, and its ability to bring strangers together.`,
+        director: 'Zoya Akhtar',
+        budgetRange: 'LOW',
+        coverImageUrl: '/api/files/1753525852927_Screenshot_2025-05-23_125127.png',
+        submittedBy: producerUser.id,
+        status: 'GREENLIT',
+        readingProgress: 100,
+        notes: 'Excellent character development. Greenlit for production starting next quarter.'
+      },
+      {
+        title: 'The Quantum Paradox',
+        writers: 'Dr. Lisa Chen, James Mitchell',
+        phone: '+1-555-9876',
+        email: 'quantum.writers@gmail.com',
+        type: 'FEATURE_FILM',
+        developmentStatus: 'PITCH_DECK',
+        logline: 'A quantum physicist discovers she can communicate with parallel versions of herself, but each interaction threatens to unravel the fabric of reality.',
+        synopsis: `Dr. Sarah Mitchell, a brilliant quantum physicist at MIT, has spent her career studying parallel universe theory. When a late-night experiment goes wrong, she accidentally creates a quantum communication device that allows her to contact alternate versions of herself across different realities.
+
+Initially fascinated by the scientific implications, Sarah begins regularly communicating with her parallel selves, learning about the different paths her life could have taken. But Sarah's interactions with the parallel realities begin to cause dangerous quantum entanglements.
+
+The film explores themes of choice, destiny, and the unintended consequences of scientific discovery.`,
+        budgetRange: 'VERY_HIGH',
+
+        submittedBy: adminUser.id,
+        status: 'SUBMITTED',
+        readingProgress: 0
+      },
+      {
+        title: 'Small Town Secrets',
+        writers: 'Michael O\'Connor',
+        phone: '+1-555-4567',
+        email: 'michael.oconnor.writer@gmail.com',
+        type: 'WEB_SERIES',
+        developmentStatus: 'FIRST_DRAFT',
+        logline: 'When a big-city journalist returns to her hometown to settle her mother\'s estate, she uncovers a web of secrets that could destroy the community she once called home.',
+        synopsis: `"Small Town Secrets" is an 8-episode limited series that follows investigative journalist Rachel Morgan as she returns to Millbrook, the small Minnesota town she fled 15 years ago. She's back to settle her estranged mother's estate, planning to sell the family home and leave as quickly as possible.
+
+But when Rachel discovers her mother's hidden journals detailing suspicious activities in the town, she can't resist investigating. What starts as curiosity about local corruption soon reveals a conspiracy involving the town's most respected citizens.
+
+The series examines themes of loyalty, corruption, and the price of truth in a community where everyone knows everyone else's business.`,
+        budgetRange: 'INDIE',
+
+        submittedBy: executiveUser.id,
+        status: 'READING',
+        readingProgress: 45
+      },
+      {
+        title: 'Code Name: Phoenix',
+        writers: 'David Park, Amanda Foster',
+        phone: '+1-555-3456',
+        email: 'phoenix.writers@gmail.com',
+        type: 'FEATURE_FILM',
+        developmentStatus: 'TREATMENT',
+        logline: 'A disgraced former spy must infiltrate a high-tech criminal organization to prevent a cyber attack that could cripple the global financial system.',
+        synopsis: `Marcus Phoenix was once the CIA's top cyber-warfare specialist until a mission went wrong and he was blamed for the death of his entire team. Now working as a private security consultant, he's approached by his former handler with an offer he can't refuse.
+
+The mission: infiltrate "The Nexus," a sophisticated criminal organization that operates entirely in the digital realm. Racing against time as Day Zero approaches, Marcus must navigate a world of digital deception, high-tech espionage, and deadly betrayals. The film combines heart-pounding action sequences with cutting-edge cyber-warfare.`,
+        director: 'Christopher McQuarrie',
+        budgetRange: 'HIGH',
+
+        submittedBy: adminUser.id,
+        status: 'ON_HOLD',
+        readingProgress: 30,
+        notes: 'Strong concept but needs budget revision. On hold pending market analysis.'
+      }
+    ]
+
+    for (const scriptData of scripts) {
+      const script = await prisma.script.create({
+        data: scriptData as any
+      })
+      console.log(`✅ Created script: ${script.title}`)
+    }
+  }
+
+  // Log credentials for reference
+  console.log('\n📋 User Credentials Summary:')
+  console.log('=' .repeat(50))
+  console.log('🔐 ADMIN ACCOUNTS:')
+  console.log('  • venkat@thespiritmedia.com / Bekind@2026')
+  console.log('  • john@doe.com / johndoe123')
+  console.log('\n👔 EXECUTIVE ACCOUNTS:')
+  console.log('  • sarah.williams@scriptrack.com / scriptrack123')
+  console.log('  • michael.chen@scriptrack.com / scriptrack123')
+  console.log('\n🎬 PRODUCER ACCOUNTS:')
+  console.log('  • jessica.martinez@scriptrack.com / scriptrack123')
+  console.log('  • david.thompson@scriptrack.com / scriptrack123')
+  console.log('  • emily.rodriguez@scriptrack.com / scriptrack123')
+  console.log('\n📖 READER ACCOUNTS:')
+  console.log('  • alex.johnson@scriptrack.com / scriptrack123')
+  console.log('  • taylor.brown@scriptrack.com / scriptrack123')
+  console.log('  • jordan.davis@scriptrack.com / scriptrack123')
+  console.log('  • casey.wilson@scriptrack.com / scriptrack123')
+  console.log('  • riley.anderson@scriptrack.com / scriptrack123')
+  console.log('=' .repeat(50))
+
+  console.log('\n🎉 Database seeding completed successfully!')
+  console.log(`📊 Total users created: ${sampleUsers.length}`)
+  console.log('🚀 ScripTrack Phase 1 is ready to use!')
+}
+
+main()
+  .then(async () => {
+    await prisma.$disconnect()
+  })
+  .catch(async (e) => {
+    console.error('❌ Seeding failed:', e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })

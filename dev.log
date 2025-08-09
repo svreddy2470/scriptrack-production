@@ -1,0 +1,14 @@
+
+> dev
+> next dev
+
+  ▲ Next.js 14.2.28
+  - Local:        http://localhost:3000
+  - Environments: .env
+  - Experiments (use with caution):
+    · outputFileTracingRoot
+
+ ✓ Starting...
+ ✓ Ready in 1679ms
+ ✓ Compiled /middleware in 231ms (174 modules)
+[?25h

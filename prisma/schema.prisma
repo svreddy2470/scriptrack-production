@@ -1,0 +1,326 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl", "linux-musl-arm64-openssl-3.0.x"]
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String               @id @default(cuid())
+  email             String               @unique
+  hashedPassword    String?
+  name              String?
+  phone             String?
+  role              UserRole             @default(READER)
+  status            UserStatus           @default(ACTIVE)
+  photoUrl          String?
+  imdbProfile       String?
+  isProfileComplete Boolean              @default(false)
+  resetToken        String?
+  resetTokenExpiry  DateTime?
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+  accounts          Account[]
+  scripts           Script[]
+  sessions          Session[]
+  uploadedFiles     ScriptFile[]
+  assignedTo        Assignment[]         @relation("AssignedTo")
+  assignedBy        Assignment[]         @relation("AssignedBy")
+  feedback          Feedback[]
+  activities        Activity[]
+  organizedMeetings Meeting[]            @relation("MeetingOrganizer")
+  meetingParticipations MeetingParticipant[]
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+model Script {
+  id                String            @id @default(cuid())
+  title             String
+  writers           String
+  phone             String
+  email             String
+  type              ScriptType
+  developmentStatus DevelopmentStatus
+  logline           String
+  synopsis          String
+  director          String?
+  budgetRange       BudgetRange?
+  genre             String?
+  subGenre          String?
+  coverImageUrl     String?
+  status            ScriptStatus      @default(SUBMITTED)
+  submittedBy       String
+  notes             String?
+  isFeatured        Boolean           @default(false)
+  readingProgress   Int               @default(0)
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  user              User              @relation(fields: [submittedBy], references: [id], onDelete: Cascade)
+  files             ScriptFile[]
+  assignments       Assignment[]
+  feedback          Feedback[]
+  activities        Activity[]
+  meetings          Meeting[]
+
+  @@map("scripts")
+}
+
+model ScriptFile {
+  id          String           @id @default(cuid())
+  scriptId    String
+  fileType    ScriptFileType
+  fileName    String
+  fileUrl     String
+  fileSize    Int
+  version     Int              @default(1)
+  isLatest    Boolean          @default(true)
+  uploadedBy  String
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  script      Script           @relation(fields: [scriptId], references: [id], onDelete: Cascade)
+  uploader    User             @relation(fields: [uploadedBy], references: [id], onDelete: Cascade)
+
+  @@unique([scriptId, fileType, version])
+  @@map("script_files")
+}
+
+model Assignment {
+  id          String            @id @default(cuid())
+  scriptId    String
+  assignedTo  String
+  assignedBy  String
+  dueDate     DateTime?
+  notes       String?
+  status      AssignmentStatus  @default(PENDING)
+  priority    AssignmentPriority @default(MEDIUM)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  script      Script            @relation(fields: [scriptId], references: [id], onDelete: Cascade)
+  assignee    User              @relation("AssignedTo", fields: [assignedTo], references: [id], onDelete: Cascade)
+  assigner    User              @relation("AssignedBy", fields: [assignedBy], references: [id], onDelete: Cascade)
+  feedback    Feedback[]
+
+  @@map("assignments")
+}
+
+model Feedback {
+  id           String       @id @default(cuid())
+  scriptId     String
+  assignmentId String?
+  userId       String
+  rating       Int?         // 1-10 rating
+  comments     String
+  category     FeedbackCategory @default(GENERAL)
+  isPrivate    Boolean      @default(false)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  script       Script       @relation(fields: [scriptId], references: [id], onDelete: Cascade)
+  assignment   Assignment?  @relation(fields: [assignmentId], references: [id], onDelete: SetNull)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("feedback")
+}
+
+model Activity {
+  id          String        @id @default(cuid())
+  scriptId    String
+  userId      String
+  type        ActivityType
+  title       String
+  description String?
+  metadata    Json?         // Additional data like old/new status, etc.
+  createdAt   DateTime      @default(now())
+  script      Script        @relation(fields: [scriptId], references: [id], onDelete: Cascade)
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("activities")
+}
+
+model Meeting {
+  id           String               @id @default(cuid())
+  scriptId     String
+  title        String
+  description  String?
+  scheduledAt  DateTime
+  scheduledBy  String
+  status       MeetingStatus        @default(SCHEDULED)
+  meetingLink  String?              // Optional meeting link (Zoom, Teams, etc.)
+  location     String?              // Optional physical location
+  duration     Int?                 // Duration in minutes
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  script       Script               @relation(fields: [scriptId], references: [id], onDelete: Cascade)
+  organizer    User                 @relation("MeetingOrganizer", fields: [scheduledBy], references: [id], onDelete: Cascade)
+  participants MeetingParticipant[]
+
+  @@map("meetings")
+}
+
+model MeetingParticipant {
+  id         String                   @id @default(cuid())
+  meetingId  String
+  userId     String
+  status     ParticipantStatus        @default(INVITED)
+  response   ParticipantResponse?     // Optional response from participant
+  createdAt  DateTime                 @default(now())
+  updatedAt  DateTime                 @updatedAt
+  meeting    Meeting                  @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  user       User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([meetingId, userId])
+  @@map("meeting_participants")
+}
+
+enum AssignmentStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  OVERDUE
+}
+
+enum AssignmentPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum FeedbackCategory {
+  GENERAL
+  SCRIPT_QUALITY
+  MARKETABILITY
+  PRODUCTION_NOTES
+  DEVELOPMENT_SUGGESTIONS
+}
+
+enum ActivityType {
+  SCRIPT_SUBMITTED
+  STATUS_CHANGED
+  ASSIGNMENT_CREATED
+  ASSIGNMENT_COMPLETED
+  FEEDBACK_ADDED
+  FILE_UPLOADED
+  SCRIPT_FEATURED
+  SCRIPT_EDITED
+  PASSWORD_RESET
+  MEETING_SCHEDULED
+  MEETING_UPDATED
+  MEETING_CANCELLED
+  MEETING_COMPLETED
+}
+
+enum UserRole {
+  ADMIN
+  EXECUTIVE
+  PRODUCER
+  READER
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum ScriptType {
+  FEATURE_FILM
+  WEB_SERIES
+}
+
+enum DevelopmentStatus {
+  SHOOTING_SCRIPT
+  FIRST_DRAFT
+  TREATMENT
+  ONE_LINE_ORDER
+  PITCH_DECK
+}
+
+enum ScriptStatus {
+  SUBMITTED
+  READING
+  CONSIDERED
+  DEVELOPMENT
+  GREENLIT
+  IN_PRODUCTION
+  ON_HOLD
+  REJECTED
+}
+
+enum BudgetRange {
+  INDIE
+  LOW
+  MEDIUM
+  HIGH
+  VERY_HIGH
+}
+
+enum ScriptFileType {
+  SCREENPLAY
+  PITCHDECK
+  TREATMENT
+  ONELINE_ORDER
+  STORYBOARD
+  TEAM_PROFILE
+}
+
+enum MeetingStatus {
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum ParticipantStatus {
+  INVITED
+  CONFIRMED
+  DECLINED
+  ATTENDED
+  MISSED
+}
+
+enum ParticipantResponse {
+  ACCEPTED
+  DECLINED
+  TENTATIVE
+}

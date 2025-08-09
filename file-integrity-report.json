@@ -1,0 +1,23 @@
+{
+  "totalFiles": 0,
+  "validFiles": 0,
+  "brokenFiles": 0,
+  "issues": [],
+  "summary": {
+    "scriptFiles": {
+      "total": 0,
+      "valid": 0,
+      "broken": 0
+    },
+    "coverImages": {
+      "total": 0,
+      "valid": 0,
+      "broken": 0
+    },
+    "userPhotos": {
+      "total": 0,
+      "valid": 0,
+      "broken": 0
+    }
+  }
+}

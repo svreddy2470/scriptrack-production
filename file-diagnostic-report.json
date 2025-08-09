@@ -1,0 +1,690 @@
+{
+  "timestamp": "2025-07-30T07:38:06.066Z",
+  "issues": [
+    {
+      "type": "missing",
+      "filename": "1753535511372_Carnage-Screenplay.pdf",
+      "expectedSize": 4882721,
+      "databaseRecord": {
+        "id": "cmdkaistf0005p201rgie94er",
+        "fileName": "Carnage-Screenplay.pdf",
+        "fileUrl": "/api/files/1753535511372_Carnage-Screenplay.pdf",
+        "fileSize": 4882721,
+        "fileType": "SCREENPLAY",
+        "script": {
+          "id": "cmdkaist90003p201hchoydwo",
+          "title": "Carnage"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753535526088_carnage_pitch_deck_1_.pdf",
+      "expectedSize": 1162112,
+      "databaseRecord": {
+        "id": "cmdkaistf0007p2014y0fzel1",
+        "fileName": "carnage pitch deck[1].pdf",
+        "fileUrl": "/api/files/1753535526088_carnage_pitch_deck_1_.pdf",
+        "fileSize": 1162112,
+        "fileType": "PITCHDECK",
+        "script": {
+          "id": "cmdkaist90003p201hchoydwo",
+          "title": "Carnage"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753540720241_Carnage-Pitchdeck.pdf",
+      "expectedSize": 1162112,
+      "databaseRecord": {
+        "id": "cmdkcvbr20003p201ttn8ovli",
+        "fileName": "Carnage-Pitchdeck.pdf",
+        "fileUrl": "/api/files/1753540720241_Carnage-Pitchdeck.pdf",
+        "fileSize": 1162112,
+        "fileType": "PITCHDECK",
+        "script": {
+          "id": "cmdkaist90003p201hchoydwo",
+          "title": "Carnage"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753546132561_Walking_Together-Screenplay.pdf",
+      "expectedSize": 662103,
+      "databaseRecord": {
+        "id": "cmdkg7kdu0003p201s7hx5rje",
+        "fileName": "Walking_Together-Screenplay.pdf",
+        "fileUrl": "/api/files/1753546132561_Walking_Together-Screenplay.pdf",
+        "fileSize": 662103,
+        "fileType": "SCREENPLAY",
+        "script": {
+          "id": "cmdkg7kdm0001p201rtcut87g",
+          "title": "Walking Together"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753546146437_Walking_Together-Treatment.pdf",
+      "expectedSize": 34939,
+      "databaseRecord": {
+        "id": "cmdkg7kdu0005p201kntdbnvz",
+        "fileName": "Walking_Together-Treatment.pdf",
+        "fileUrl": "/api/files/1753546146437_Walking_Together-Treatment.pdf",
+        "fileSize": 34939,
+        "fileType": "TREATMENT",
+        "script": {
+          "id": "cmdkg7kdm0001p201rtcut87g",
+          "title": "Walking Together"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753546156221_Walking_Together-Scene_Outline.pdf",
+      "expectedSize": 22437,
+      "databaseRecord": {
+        "id": "cmdkg7kdu0007p201r5j7yjtj",
+        "fileName": "Walking_Together-Scene_Outline.pdf",
+        "fileUrl": "/api/files/1753546156221_Walking_Together-Scene_Outline.pdf",
+        "fileSize": 22437,
+        "fileType": "ONELINE_ORDER",
+        "script": {
+          "id": "cmdkg7kdm0001p201rtcut87g",
+          "title": "Walking Together"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753560050025_TwoByThree.pdf",
+      "expectedSize": 610796,
+      "databaseRecord": {
+        "id": "cmdkog56u000kp201l57gu90z",
+        "fileName": "TwoByThree.pdf",
+        "fileUrl": "/api/files/1753560050025_TwoByThree.pdf",
+        "fileSize": 610796,
+        "fileType": "TREATMENT",
+        "script": {
+          "id": "cmdkog56n000ip201fbl4mtje",
+          "title": "Two by Three"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753560161853_TwoByThree.pdf",
+      "expectedSize": 610796,
+      "databaseRecord": {
+        "id": "cmdkog56u000mp201u1fxun2a",
+        "fileName": "TwoByThree.pdf",
+        "fileUrl": "/api/files/1753560161853_TwoByThree.pdf",
+        "fileSize": 610796,
+        "fileType": "SCREENPLAY",
+        "script": {
+          "id": "cmdkog56n000ip201fbl4mtje",
+          "title": "Two by Three"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753617493224_Yayati-Episode-Synopsis.pdf",
+      "expectedSize": 964295,
+      "databaseRecord": {
+        "id": "cmdlmq92h0003mo01azdsjqd3",
+        "fileName": "Yayati-Episode-Synopsis.pdf",
+        "fileUrl": "/api/files/1753617493224_Yayati-Episode-Synopsis.pdf",
+        "fileSize": 964295,
+        "fileType": "TREATMENT",
+        "script": {
+          "id": "cmdlmq92d0001mo01k4kcfhz0",
+          "title": "Yayati"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753618968896_Yayati-Episode-Synopsis.pdf",
+      "expectedSize": 964295,
+      "databaseRecord": {
+        "id": "cmdlnu49e000hmo01dkqr5cu4",
+        "fileName": "Yayati-Episode-Synopsis.pdf",
+        "fileUrl": "/api/files/1753618968896_Yayati-Episode-Synopsis.pdf",
+        "fileSize": 964295,
+        "fileType": "TEAM_PROFILE",
+        "script": {
+          "id": "cmdlnu498000fmo01hahblpbj",
+          "title": "Placebo"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753618981455_Yayati-Episode-Synopsis.pdf",
+      "expectedSize": 964295,
+      "databaseRecord": {
+        "id": "cmdlnu49e000jmo01unckr55h",
+        "fileName": "Yayati-Episode-Synopsis.pdf",
+        "fileUrl": "/api/files/1753618981455_Yayati-Episode-Synopsis.pdf",
+        "fileSize": 964295,
+        "fileType": "TREATMENT",
+        "script": {
+          "id": "cmdlnu498000fmo01hahblpbj",
+          "title": "Placebo"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753637932925_GhengizKhan-Screenplay.pdf",
+      "expectedSize": 1577023,
+      "databaseRecord": {
+        "id": "cmdlyr37v0005mq012r05kgvs",
+        "fileName": "GhengizKhan-Screenplay.pdf",
+        "fileUrl": "/api/files/1753637932925_GhengizKhan-Screenplay.pdf",
+        "fileSize": 1577023,
+        "fileType": "SCREENPLAY",
+        "script": {
+          "id": "cmdlyr37p0003mq011tdaq0jh",
+          "title": "Genghiz Khan"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753638905518_Moobs-Pitchdeck.pdf",
+      "expectedSize": 6200849,
+      "databaseRecord": {
+        "id": "cmdlzfkqi000xmq01l4ijqk93",
+        "fileName": "Moobs-Pitchdeck.pdf",
+        "fileUrl": "/api/files/1753638905518_Moobs-Pitchdeck.pdf",
+        "fileSize": 6200849,
+        "fileType": "PITCHDECK",
+        "script": {
+          "id": "cmdlzfkqe000vmq01p3ercyge",
+          "title": "Moobs"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753641004438_Beena-Episode-Breakdown.pdf",
+      "expectedSize": 223879,
+      "databaseRecord": {
+        "id": "cmdm0rn71001pmq01m768y52u",
+        "fileName": "Beena-Episode-Breakdown.pdf",
+        "fileUrl": "/api/files/1753641004438_Beena-Episode-Breakdown.pdf",
+        "fileSize": 223879,
+        "fileType": "TREATMENT",
+        "script": {
+          "id": "cmdm0rn6w001nmq01bb3168l7",
+          "title": "Beena's Story"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753642030868_Goyra-Pitchdeck.pdf",
+      "expectedSize": 6309504,
+      "databaseRecord": {
+        "id": "cmdm17az00021mq010zvulkah",
+        "fileName": "Goyra-Pitchdeck.pdf",
+        "fileUrl": "/api/files/1753642030868_Goyra-Pitchdeck.pdf",
+        "fileSize": 6309504,
+        "fileType": "PITCHDECK",
+        "script": {
+          "id": "cmdm17ayv001zmq01ltkdfotv",
+          "title": "Goyra"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753643217178_Kumbasthalam-Pitchdeck.pdf",
+      "expectedSize": 8377316,
+      "databaseRecord": {
+        "id": "cmdm23uza002lmq01lvx9lkbc",
+        "fileName": "Kumbasthalam-Pitchdeck.pdf",
+        "fileUrl": "/api/files/1753643217178_Kumbasthalam-Pitchdeck.pdf",
+        "fileSize": 8377316,
+        "fileType": "PITCHDECK",
+        "script": {
+          "id": "cmdm23uz5002jmq016gtkq9sa",
+          "title": "Khumbasthalam"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753663490163_Myra-Screenplay.pdf",
+      "expectedSize": 783374,
+      "databaseRecord": {
+        "id": "cmdmdyw600031mq01dsmre2s0",
+        "fileName": "Myra-Screenplay.pdf",
+        "fileUrl": "/api/files/1753663490163_Myra-Screenplay.pdf",
+        "fileSize": 783374,
+        "fileType": "SCREENPLAY",
+        "script": {
+          "id": "cmdmdyw5v002zmq01ibpf6ngt",
+          "title": "Myra"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753666407452_LAR-Screenplay.pdf",
+      "expectedSize": 2983909,
+      "databaseRecord": {
+        "id": "cmdmfti46004lmq01r1bhirnq",
+        "fileName": "LAR-Screenplay.pdf",
+        "fileUrl": "/api/files/1753666407452_LAR-Screenplay.pdf",
+        "fileSize": 2983909,
+        "fileType": "SCREENPLAY",
+        "script": {
+          "id": "cmdmfti42004jmq01lsy1ydo9",
+          "title": "Love Action Romance"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753691295556_Haunsla-Rakh-OnelineOrder.pdf",
+      "expectedSize": 133239,
+      "databaseRecord": {
+        "id": "cmdmuk12y000ikx01x11ywedb",
+        "fileName": "Haunsla-Rakh-OnelineOrder.pdf",
+        "fileUrl": "/api/files/1753691295556_Haunsla-Rakh-OnelineOrder.pdf",
+        "fileSize": 133239,
+        "fileType": "ONELINE_ORDER",
+        "script": {
+          "id": "cmdmuk12t000gkx018beiinnr",
+          "title": "Haunsla Rakh - Remake"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753698269944_Honhaar-Screenplay.pdf",
+      "expectedSize": 1026201,
+      "databaseRecord": {
+        "id": "cmdmyog500003ld01qbwsi65b",
+        "fileName": "Honhaar-Screenplay.pdf",
+        "fileUrl": "/api/files/1753698269944_Honhaar-Screenplay.pdf",
+        "fileSize": 1026201,
+        "fileType": "SCREENPLAY",
+        "script": {
+          "id": "cmdmyog4s0001ld01jw2ya653",
+          "title": "Honhaar"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753698446347_Amritha-Pitchdeck.pdf",
+      "expectedSize": 1399556,
+      "databaseRecord": {
+        "id": "cmdmys2m50009ld011d81alwz",
+        "fileName": "Amritha-Pitchdeck.pdf",
+        "fileUrl": "/api/files/1753698446347_Amritha-Pitchdeck.pdf",
+        "fileSize": 1399556,
+        "fileType": "PITCHDECK",
+        "script": {
+          "id": "cmdmys2m00007ld01piobq1fh",
+          "title": "Amrutha"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753698823553_Ayravan-Pitchdeck.pdf",
+      "expectedSize": 7727506,
+      "databaseRecord": {
+        "id": "cmdmz0i31000fld016o0vxyrg",
+        "fileName": "Ayravan-Pitchdeck.pdf",
+        "fileUrl": "/api/files/1753698823553_Ayravan-Pitchdeck.pdf",
+        "fileSize": 7727506,
+        "fileType": "PITCHDECK",
+        "script": {
+          "id": "cmdmz0i2t000dld01ld3u9zzi",
+          "title": "Ayravan"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753854241941_FamilyPhoto-PitchDeck_compressed.pdf",
+      "expectedSize": 507653,
+      "databaseRecord": {
+        "id": "cmdpjksar0003rv01m0f1ixfj",
+        "fileName": "FamilyPhoto-PitchDeck_compressed.pdf",
+        "fileUrl": "/api/files/1753854241941_FamilyPhoto-PitchDeck_compressed.pdf",
+        "fileSize": 507653,
+        "fileType": "PITCHDECK",
+        "script": {
+          "id": "cmdpjksaj0001rv01fhoe5xu2",
+          "title": "Family Photo"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753665150694_Chammal-Screenplay.pdf",
+      "expectedSize": 1869137,
+      "databaseRecord": {
+        "id": "cmdmf3m1k003xmq01clm5zku3",
+        "fileName": "Chammal-Screenplay.pdf",
+        "fileUrl": "/api/files/1753665150694_Chammal-Screenplay.pdf",
+        "fileSize": 1869137,
+        "fileType": "SCREENPLAY",
+        "script": {
+          "id": "cmdmf3m1f003vmq01714i367e",
+          "title": "Chammal"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753855384676_Chammal-Screenplay.pdf",
+      "expectedSize": 1869137,
+      "databaseRecord": {
+        "id": "cmdpk7oe40008rv01cip31rvo",
+        "fileName": "Chammal-Screenplay.pdf",
+        "fileUrl": "/api/files/1753855384676_Chammal-Screenplay.pdf",
+        "fileSize": 1869137,
+        "fileType": "SCREENPLAY",
+        "script": {
+          "id": "cmdmf3m1f003vmq01714i367e",
+          "title": "Chammal"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753665198657_Chammal-Pitchdeck.pdf",
+      "expectedSize": 6990951,
+      "databaseRecord": {
+        "id": "cmdmf3m1k003zmq01z0tvt98n",
+        "fileName": "Chammal-Pitchdeck.pdf",
+        "fileUrl": "/api/files/1753665198657_Chammal-Pitchdeck.pdf",
+        "fileSize": 6990951,
+        "fileType": "PITCHDECK",
+        "script": {
+          "id": "cmdmf3m1f003vmq01714i367e",
+          "title": "Chammal"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753855408608_Chammal-Pitchdeck.pdf",
+      "expectedSize": 6990951,
+      "databaseRecord": {
+        "id": "cmdpk86ue000arv01iqtiddaz",
+        "fileName": "Chammal-Pitchdeck.pdf",
+        "fileUrl": "/api/files/1753855408608_Chammal-Pitchdeck.pdf",
+        "fileSize": 6990951,
+        "fileType": "PITCHDECK",
+        "script": {
+          "id": "cmdmf3m1f003vmq01714i367e",
+          "title": "Chammal"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753619545256_Placebo-Pitchdeck.pdf",
+      "expectedSize": 796769,
+      "databaseRecord": {
+        "id": "cmdlnu49e000lmo014jchqt77",
+        "fileName": "Placebo-Pitchdeck.pdf",
+        "fileUrl": "/api/files/1753619545256_Placebo-Pitchdeck.pdf",
+        "fileSize": 796769,
+        "fileType": "PITCHDECK",
+        "script": {
+          "id": "cmdlnu498000fmo01hahblpbj",
+          "title": "Placebo"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753856193968_Goyra-Pitchdeck.pdf",
+      "expectedSize": 6309504,
+      "databaseRecord": {
+        "id": "cmdpkp0rx000crv01t64m429r",
+        "fileName": "Goyra-Pitchdeck.pdf",
+        "fileUrl": "/api/files/1753856193968_Goyra-Pitchdeck.pdf",
+        "fileSize": 6309504,
+        "fileType": "PITCHDECK",
+        "script": {
+          "id": "cmdlnu498000fmo01hahblpbj",
+          "title": "Placebo"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753639779141_PlateMeals-Screenplay.pdf",
+      "expectedSize": 327029,
+      "databaseRecord": {
+        "id": "cmdlzur1q0013mq01kk6a2kis",
+        "fileName": "PlateMeals-Screenplay.pdf",
+        "fileUrl": "/api/files/1753639779141_PlateMeals-Screenplay.pdf",
+        "fileSize": 327029,
+        "fileType": "SCREENPLAY",
+        "script": {
+          "id": "cmdlzur1l0011mq01cw7e8vpu",
+          "title": "Plate Meals"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753857407773_PlateMeals-Screenplay.pdf",
+      "expectedSize": 327029,
+      "databaseRecord": {
+        "id": "cmdplf1qh000grv01oy60neno",
+        "fileName": "PlateMeals-Screenplay.pdf",
+        "fileUrl": "/api/files/1753857407773_PlateMeals-Screenplay.pdf",
+        "fileSize": 327029,
+        "fileType": "SCREENPLAY",
+        "script": {
+          "id": "cmdlzur1l0011mq01cw7e8vpu",
+          "title": "Plate Meals"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753639787040_PlateMeals-Pitchdeck.pdf",
+      "expectedSize": 1820874,
+      "databaseRecord": {
+        "id": "cmdlzur1q0015mq01a030z5sy",
+        "fileName": "PlateMeals-Pitchdeck.pdf",
+        "fileUrl": "/api/files/1753639787040_PlateMeals-Pitchdeck.pdf",
+        "fileSize": 1820874,
+        "fileType": "PITCHDECK",
+        "script": {
+          "id": "cmdlzur1l0011mq01cw7e8vpu",
+          "title": "Plate Meals"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753857437320_PlateMeals-Pitchdeck.pdf",
+      "expectedSize": 1820874,
+      "databaseRecord": {
+        "id": "cmdplfnzy000irv01n2mtwp86",
+        "fileName": "PlateMeals-Pitchdeck.pdf",
+        "fileUrl": "/api/files/1753857437320_PlateMeals-Pitchdeck.pdf",
+        "fileSize": 1820874,
+        "fileType": "PITCHDECK",
+        "script": {
+          "id": "cmdlzur1l0011mq01cw7e8vpu",
+          "title": "Plate Meals"
+        }
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753698278016_Honhaar-Poster.png",
+      "databaseRecord": {
+        "scriptTitle": "Honhaar",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753698443002_Amritha-Poster.jpg",
+      "databaseRecord": {
+        "scriptTitle": "Amrutha",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753854314650_Screenshot_2025-07-30_111454.jpg",
+      "databaseRecord": {
+        "scriptTitle": "Family Photo",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753698806021_Ayravan-Poster.jpg",
+      "databaseRecord": {
+        "scriptTitle": "Ayravan",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753695727647_PlateMeals-Poster.png",
+      "databaseRecord": {
+        "scriptTitle": "Plate Meals",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753695412344_Carnage-Poster.png",
+      "databaseRecord": {
+        "scriptTitle": "Carnage",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753695342001_Placebo-Poster.png",
+      "databaseRecord": {
+        "scriptTitle": "Placebo",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753695378246_Yayati-Poster.png",
+      "databaseRecord": {
+        "scriptTitle": "Yayati",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753695795725_TwoByThree-Poster.png",
+      "databaseRecord": {
+        "scriptTitle": "Two by Three",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753696125652_Walking_Together-Coverpage.png",
+      "databaseRecord": {
+        "scriptTitle": "Walking Together",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753695301163_Moobs-Poster.png",
+      "databaseRecord": {
+        "scriptTitle": "Moobs",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753696065391_Beena-Poster.png",
+      "databaseRecord": {
+        "scriptTitle": "Beena's Story",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753695221191_Kumbasthalam-Poster.png",
+      "databaseRecord": {
+        "scriptTitle": "Khumbasthalam",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753695545982_Chammal-Poster.jpg",
+      "databaseRecord": {
+        "scriptTitle": "Chammal",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753695151023_Goyra-Poster.jpg",
+      "databaseRecord": {
+        "scriptTitle": "Goyra",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753695989492_LAR-Poster.webp",
+      "databaseRecord": {
+        "scriptTitle": "Love Action Romance",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753695465057_Myra-Poster.webp",
+      "databaseRecord": {
+        "scriptTitle": "Myra",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753695627929_GenghizKhan-Poster1.png",
+      "databaseRecord": {
+        "scriptTitle": "Genghiz Khan",
+        "type": "cover image"
+      }
+    },
+    {
+      "type": "missing",
+      "filename": "1753695827635_HonslaRakh-Poster.jpg",
+      "databaseRecord": {
+        "scriptTitle": "Haunsla Rakh - Remake",
+        "type": "cover image"
+      }
+    }
+  ],
+  "summary": {
+    "totalIssues": 52,
+    "missingFiles": 52,
+    "corruptedFiles": 0
+  }
+}
