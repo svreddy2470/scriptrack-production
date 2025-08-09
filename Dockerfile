@@ -9,10 +9,10 @@ COPY yarn.lock ./
 # Install dependencies with legacy peer deps
 RUN npm install --legacy-peer-deps
 
-# Copy source code
+# Copy source code FIRST (includes prisma folder)
 COPY . .
 
-# Generate Prisma client
+# Generate Prisma client AFTER copying source
 RUN npx prisma generate
 
 # Build the application
