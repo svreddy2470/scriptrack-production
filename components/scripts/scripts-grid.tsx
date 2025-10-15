@@ -116,7 +116,7 @@ export function ScriptsGrid() {
       fetchUsers()
     }
   }, [debouncedSearchTerm, statusFilter, typeFilter, genreFilter, userFilter])
-
+/*
   const fetchScripts = async () => {
     try {
       if (debouncedSearchTerm !== searchTerm) {
@@ -153,7 +153,247 @@ export function ScriptsGrid() {
       setSearchLoading(false)
     }
   }
+*/
 
+  // Enhanced fetchScripts function with multiple fallback strategies
+const fetchScripts = async () => {
+  try {
+    if (debouncedSearchTerm !== searchTerm) {
+      setSearchLoading(true)
+    }
+    
+    // Strategy 1: Try to get all scripts with high limit
+    let scripts = await fetchScriptsStrategy1()
+    
+    // Strategy 2: If Strategy 1 fails or returns empty, try pagination
+    if (!scripts || scripts.length === 0) {
+      console.log('Strategy 1 failed, trying Strategy 2 (pagination)')
+      scripts = await fetchScriptsStrategy2()
+    }
+    
+    // Strategy 3: If both fail, try without pagination parameters
+    if (!scripts || scripts.length === 0) {
+      console.log('Strategy 2 failed, trying Strategy 3 (no pagination)')
+      scripts = await fetchScriptsStrategy3()
+    }
+    
+    // Strategy 4: Last resort - try different API endpoint
+    if (!scripts || scripts.length === 0) {
+      console.log('Strategy 3 failed, trying Strategy 4 (alternative endpoint)')
+      scripts = await fetchScriptsStrategy4()
+    }
+    
+    setScripts(scripts || [])
+    
+    // Log success for debugging
+    console.log(`Successfully fetched ${scripts?.length || 0} scripts`)
+    
+  } catch (error) {
+    console.error('All fetch strategies failed:', error)
+    toast({
+      title: "Error",
+      description: "Failed to fetch scripts. Please try refreshing the page.",
+      variant: "destructive"
+    })
+    setScripts([])
+  } finally {
+    setLoading(false)
+    setSearchLoading(false)
+  }
+}
+
+// Strategy 1: High limit approach
+const fetchScriptsStrategy1 = async () => {
+  try {
+    const params = new URLSearchParams()
+    if (debouncedSearchTerm) params.append('search', debouncedSearchTerm)
+    if (statusFilter !== 'ALL') params.append('status', statusFilter)
+    if (typeFilter !== 'ALL') params.append('type', typeFilter)
+    if (genreFilter !== 'ALL') params.append('genre', genreFilter)
+    if (userFilter !== 'ALL') params.append('userId', userFilter)
+    
+    // Try with high limit
+    params.append('limit', '1000')
+    params.append('page', '1')
+    
+    const response = await fetch(`/api/scripts?${params.toString()}`)
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
+    
+    const data = await response.json()
+    return extractScriptsFromResponse(data)
+  } catch (error) {
+    console.error('Strategy 1 failed:', error)
+    return null
+  }
+}
+
+// Strategy 2: Proper pagination (fetch all pages)
+const fetchScriptsStrategy2 = async () => {
+  try {
+    let allScripts = []
+    let page = 1
+    let hasMore = true
+    const maxPages = 50 // Safety limit
+    
+    while (hasMore && page <= maxPages) {
+      const params = new URLSearchParams()
+      if (debouncedSearchTerm) params.append('search', debouncedSearchTerm)
+      if (statusFilter !== 'ALL') params.append('status', statusFilter)
+      if (typeFilter !== 'ALL') params.append('type', typeFilter)
+      if (genreFilter !== 'ALL') params.append('genre', genreFilter)
+      if (userFilter !== 'ALL') params.append('userId', userFilter)
+      params.append('page', page.toString())
+      params.append('limit', '50')
+      
+      const response = await fetch(`/api/scripts?${params.toString()}`)
+      if (!response.ok) throw new Error(`HTTP ${response.status}`)
+      
+      const data = await response.json()
+      const pageScripts = extractScriptsFromResponse(data)
+      
+      if (pageScripts && pageScripts.length > 0) {
+        allScripts = [...allScripts, ...pageScripts]
+        hasMore = pageScripts.length === 50
+      } else {
+        hasMore = false
+      }
+      
+      page++
+    }
+    
+    return allScripts.length > 0 ? allScripts : null
+  } catch (error) {
+    console.error('Strategy 2 failed:', error)
+    return null
+  }
+}
+
+// Strategy 3: No pagination parameters (original approach)
+const fetchScriptsStrategy3 = async () => {
+  try {
+    const params = new URLSearchParams()
+    if (debouncedSearchTerm) params.append('search', debouncedSearchTerm)
+    if (statusFilter !== 'ALL') params.append('status', statusFilter)
+    if (typeFilter !== 'ALL') params.append('type', typeFilter)
+    if (genreFilter !== 'ALL') params.append('genre', genreFilter)
+    if (userFilter !== 'ALL') params.append('userId', userFilter)
+    
+    // No pagination parameters
+    const response = await fetch(`/api/scripts?${params.toString()}`)
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
+    
+    const data = await response.json()
+    return extractScriptsFromResponse(data)
+  } catch (error) {
+    console.error('Strategy 3 failed:', error)
+    return null
+  }
+}
+
+// Strategy 4: Alternative endpoint or different approach
+const fetchScriptsStrategy4 = async () => {
+  try {
+    // Try alternative endpoints
+    const endpoints = ['/api/scripts/all', '/api/admin/scripts', '/api/scripts']
+    
+    for (const endpoint of endpoints) {
+      try {
+        const params = new URLSearchParams()
+        if (debouncedSearchTerm) params.append('q', debouncedSearchTerm) // Different param name
+        
+        const response = await fetch(`${endpoint}?${params.toString()}`)
+        if (response.ok) {
+          const data = await response.json()
+          const scripts = extractScriptsFromResponse(data)
+          if (scripts && scripts.length > 0) {
+            return scripts
+          }
+        }
+      } catch (endpointError) {
+        console.error(`Endpoint ${endpoint} failed:`, endpointError)
+        continue
+      }
+    }
+    
+    return null
+  } catch (error) {
+    console.error('Strategy 4 failed:', error)
+    return null
+  }
+}
+
+// Helper function to extract scripts from different response formats
+const extractScriptsFromResponse = (data) => {
+  if (!data) return null
+  
+  // Try different response formats
+  if (data.scripts && Array.isArray(data.scripts)) {
+    return data.scripts
+  } else if (Array.isArray(data)) {
+    return data
+  } else if (data.data && Array.isArray(data.data)) {
+    return data.data
+  } else if (data.results && Array.isArray(data.results)) {
+    return data.results
+  } else if (data.items && Array.isArray(data.items)) {
+    return data.items
+  }
+  
+  console.warn('Unknown response format:', data)
+  return null
+}
+
+// Add retry mechanism for network failures
+const fetchWithRetry = async (url, options = {}, maxRetries = 3) => {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      const response = await fetch(url, options)
+      if (response.ok) return response
+      
+      // If it's a server error, retry
+      if (response.status >= 500 && i < maxRetries - 1) {
+        await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1))) // Exponential backoff
+        continue
+      }
+      
+      return response
+    } catch (error) {
+      if (i === maxRetries - 1) throw error
+      await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)))
+    }
+  }
+}
+
+// Enhanced error handling with user-friendly messages
+const handleFetchError = (error, strategy) => {
+  console.error(`Fetch strategy ${strategy} failed:`, error)
+  
+  if (error.name === 'TypeError' && error.message.includes('fetch')) {
+    toast({
+      title: "Network Error",
+      description: "Please check your internet connection and try again.",
+      variant: "destructive"
+    })
+  } else if (error.message.includes('HTTP 401')) {
+    toast({
+      title: "Authentication Error",
+      description: "Please log in again to continue.",
+      variant: "destructive"
+    })
+  } else if (error.message.includes('HTTP 403')) {
+    toast({
+      title: "Permission Error",
+      description: "You don't have permission to view these scripts.",
+      variant: "destructive"
+    })
+  } else {
+    toast({
+      title: "Error",
+      description: `Failed to load scripts (Strategy ${strategy}). Trying alternative method...`,
+      variant: "destructive"
+    })
+  }
+}
   const fetchUsers = async () => {
     try {
       const response = await fetch('/api/users')
