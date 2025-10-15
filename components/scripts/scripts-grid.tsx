@@ -129,6 +129,8 @@ export function ScriptsGrid() {
       if (typeFilter !== 'ALL') params.append('type', typeFilter)
       if (genreFilter !== 'ALL') params.append('genre', genreFilter)
       if (userFilter !== 'ALL') params.append('userId', userFilter)
+
+      params.append('limit', '1000')
       
       const response = await fetch(`/api/scripts?${params.toString()}`)
       if (!response.ok) throw new Error('Failed to fetch scripts')
